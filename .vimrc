@@ -1,100 +1,51 @@
-set nocompatible
+call plug#begin()
+    Plug 'preservim/nerdtree'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'tpope/vim-fugitive'
+    Plug 'junegunn/fzf.vim'
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'terryma/vim-multiple-cursors'
+    Plug 'kana/vim-surround'
+call plug#end()
 
-"Plugin pathogen
-execute pathogen#infect()
-syntax on
-filetype plugin on
-
-"Indentation
-set autoindent
-set tabstop=4
-set shiftwidth=4
-set expandtab
-set softtabstop=4
-
-"Appearance
-set cursorline
-set wrap
-set ruler
-set laststatus=2
-set t_Co=256
-
-
-" Theme and Styling 
-set background=dark
-"
-"if (has("termguicolors"))
-"   set termguicolors
-"endif
-
-let base16colorspace=256  " Access colors present in 256 colorspace
-colorscheme spacegray
-
-
-
-"Search
-set path+=**
-set showmatch
-set ignorecase
-set smartcase
-
-
-"Edit
-"set spell spelllang=en_us
-set noswapfile
-set visualbell
-set wildmenu
-set wildmode=longest:list,full
-set autochdir
-
-"Keymap
-nmap <F6> :bp<CR>
-nmap <F7> :bn<CR>
-
-"NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-let NERDTreeShowHidden=1
-map <C-e> :NERDTreeToggle<CR>
-
-"Airline
+" Airline theme settings
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#branch#enabled = 1
 
-"Airline Theme
-let g:airline_theme = 'wombat'
+"NERDTree Settings
+nnoremap <C-e> :NERDTreeToggle<CR>
+let NERDTreeShowHidden=1
+let NERDTreeQuitOnOpen=1
 
-"TagBar
-nmap <F8> :TagbarToggle<CR>
+" Fzf Settings
+nnoremap <C-p> :Files<CR>
+nnoremap <C-b> :Buffers<CR>
 
-"Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" Common Settings
+set nocompatible
+filetype on
+filetype plugin on
+filetype indent on
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_enable_php_checker = 1
-let g:syntastic_enable_yaml_checker = 1
-let g:syntastic_enable_sh_checker = 1
-let g:syntastic_enable_javascript_checker = 1
+syntax on
+set ai
+set sw=4
+set tabstop=4
+set noswapfile
 
-"DevIcons
-set encoding=utf-8
-let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-let g:WebDevIconsNerdTreeBeforeGlyphPadding = ''
-let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
+set hlsearch
+set incsearch
+set ignorecase
+set spell
+set splitbelow
+set cursorline
+set nobackup
+set expandtab
+set foldmethod=indent
 
-"SuperType
-let g:SuperTabDefaultCompletionType = "<c-n>"
+au bufRead * normal zR
 
-"NerdCommenter
-let g:NERDSpaceDelims = 1
-let g:NERDDefaultAlign = 'left'
-let g:NERDCompactSexyComs = 1
-let g:NERDCommentEmptyLines = 1
-let g:NERDToggleCheckAllLines = 1
-
-"Deoplete
-let g:deoplete#enable_at_startup = 1
+nmap <F6> :bp<CR>
+nmap <F7> :bn<CR>
