@@ -1,3 +1,5 @@
+The vim configuration which I needed.
+
 # Installation
 
 - Install vim-plug
@@ -9,3 +11,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 
 
 - copy the .vimrc to ~/.vimrc
+
+- open vim
+
+- Execute PlugInstall
